@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are we good? 🥺</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffeef2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+
+        .emoji {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #6c757d;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            min-height: 50px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #d63384;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            background-color: #b8256f;
+            transform: scale(1.05);
+        }
+
+        #noBtn {
+            background-color: #e9ecef;
+            color: #495057;
+            position: relative;
+        }
+
+        .success-message {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="card">
+        <div id="questionState">
+            <div class="emoji">🧸</div>
+            <h1>Are we good?</h1>
+            <p>I know I messed up. Can we clear the slate and get back on the same page?</p>
+            
+            <div class="btn-container">
+                <button id="yesBtn" onclick="acceptApology()">Yes ❤️</button>
+                <button id="noBtn" onmouseover="dodgeButton()" onclick="dodgeButton()">No 😜</button>
+            </div>
+        </div>
+
+        <div id="successState" class="success-message">
+            <div class="emoji">🎉</div>
+            <h1>Thank you!</h1>
+            <p>I appreciate you more than you know. Drinks or food on me next time! ☕</p>
+        </div>
+    </div>
+
+    <script>
+        function dodgeButton() {
+            const noBtn = document.getElementById('noBtn');
+            
+            const padding = 20;
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+            const randomX = Math.floor(Math.random() * (maxX - padding)) + padding;
+            const randomY = Math.floor(Math.random() * (maxY - padding)) + padding;
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+        }
+
+        function acceptApology() {
+            document.getElementById('questionState').style.display = 'none';
+            document.getElementById('successState').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
